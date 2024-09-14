@@ -1,0 +1,19 @@
+[build-system]
+requires = ['setuptools >= 71']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'code-exercises'
+version = '0.1.0'
+description = 'Various code exercises. Selected mainly for the purpose of job interview preparation.'
+authors = [{ name = 'Patrick Parsons' }]
+license = { file= 'LICENSE' }
+readme = 'README.md'
+dependencies = [
+    'pytest',
+    'hypothesis'
+]
+
+[tool.pytest.ini_options]
+pythonpath = [ 'src' ]
+testpaths = [ 'src' ]
