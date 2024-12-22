@@ -1,0 +1,10 @@
+[package]
+name = "plusminus"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "PlusMinus-rs"
+path = "plusminus.rs"
+
+[dependencies]
