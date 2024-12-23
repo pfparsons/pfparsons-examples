@@ -1,17 +1,22 @@
+
 [build-system]
-requires = ['setuptools >= 71']
+requires = ['setuptools >= 75']
 build-backend = 'setuptools.build_meta'
 
 [project]
-name = 'code-exercises'
+name = 'pfparsons-examples'
 version = '0.1.0'
-description = 'Various code exercises. Selected mainly for the purpose of job interview preparation.'
+description = 'Various examples - mostly Python'
 authors = [{ name = 'Patrick Parsons' }]
 license = { file= 'LICENSE' }
 readme = 'README.md'
 dependencies = [
+    'pyarrow',
+    'pandas',
+    'duckdb',
     'pytest',
-    'hypothesis'
+    'hypothesis',
+    'jupyterlab'
 ]
 
 [tool.pytest.ini_options]
