@@ -3,6 +3,13 @@
 {
     "name": "Python 3",
 	"image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
+    "runArgs": [
+        "--name", "${localEnv:USER}_${localWorkspaceFolderBasename}_$(rando() { tr -dc A-Za-z0-9 </dev/urandom | head -c ${1:-3}; echo; } && echo $(rando)_$(rando)_$(rando))",
+        "--cap-drop=NET_BIND_SERVICE",
+        "--cap-drop=SETUID",
+        "--security-opt=no-new-privileges"
+
+    ],
     "containerEnv": {
         "PYTHONDONTWRITEBYTECODE": "1"
     },
@@ -14,7 +21,12 @@
         "vscode": {
             "settings": {
                 "remote.localPortHost": "localhost",
-                "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python"
+                "editor.rulers": [79, 120],
+                "git.blame.editorDecoration.enabled": true,
+                "git.blame.editorDecoration.template": "${authorName}, ${subject}  (${authorDateAgo})",
+                "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python",
+                // Also see https://github.com/microsoft/pyright/blob/main/docs/configuration.md#sample-pyprojecttoml-file
+                "python.analysis.typeCheckingMode": "strict",
             },
             "extensions": [
                 "ms-azuretools.vscode-docker",
