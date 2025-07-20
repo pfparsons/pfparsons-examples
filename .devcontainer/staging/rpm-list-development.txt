@@ -1,0 +1,14 @@
+python3.12
+gcc
+gcc-c++
+make
+cmake
+git
+valgrind
+gdb
+clang
+clang-libs
+clang-tools-extra
+clang-analyzer
+llvm
+lldb

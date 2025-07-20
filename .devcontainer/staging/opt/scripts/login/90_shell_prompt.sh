@@ -97,5 +97,3 @@ dc_pre_prompt() {
 
 PROMPT_COMMAND=dc_pre_prompt
 export PS1="\n > "
-echo
-                                                                                            vscode @ b5e23ebe201a  Mon Dec 23 18:11:48 UTC 2024      

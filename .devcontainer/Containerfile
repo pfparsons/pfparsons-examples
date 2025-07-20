@@ -1,38 +1,12 @@
 # [Choice] Python version (use -bookworm or -bullseye variants on local arm64/Apple Silicon): 3, 3.13, 3.12, 3.11, 3.10, 3.9, 3-bookworm, 3.13-bookworm, 3.12-bookworm, 3.11-bookworm, 3.10-bookworm, 3.9-bookworm, 3-bullseye, 3.13-bullseye, 3.12-bullseye, 3.11-bullseye, 3.10-bullseye, 3.9-bullseye, 3-buster, 3.12-buster, 3.11-buster, 3.10-buster, 3.9-buster
-ARG VARIANT=3.12-bookworm
-FROM python:${VARIANT}
+FROM docker.io/fedora:latest
 
-# -----------------------------------------------------------------------------
-# Debian Advanced Package Tool (apt) install steps
+COPY staging/* /
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    # Remove imagemagick due to https://security-tracker.debian.org/tracker/CVE-2019-10131
-    && apt-get purge -y imagemagick imagemagick-6-common
+RUN --mount=type=bind,target=/srv/dnf-local-cache,source=/srv/dnf-local-cache,from=library/dnf-cache
 
-# -----------------------------------------------------------------------------
-# Environment variables for unmanaged packages and config
+RUN dnf update -y \
+    && dnf install -y python3-dnf-plugin-local createrepo_c \
+    && dnf install -y $RPMS\
+    && dnf clean all
 
-ENV PFP_BASE_DIR='/opt'
-ENV PFP_CONFIG_DIR="$PFP_BASE_DIR/config"
-
-ARG PATHS_FILE="$PFP_CONFIG_DIR/config/paths"
-RUN mkdir -p "$(dirname $PATHS_FILE)"
-
-# -----------------------------------------------------------------------------
-# Install NodeJS
-
-ARG NODEJS_VERSION='v22.12.0' \
-    NODEJS_OS='linux' \
-    NODEJS_ARCH='x64'
-
-ARG NODEJS_PLATFORM="node-$NODEJS_VERSION-$NODEJS_OS-$NODEJS_ARCH"
-
-ARG NODEJS_URL="https://nodejs.org/dist/$NODEJS_VERSION/$NODEJS_PLATFORM.tar.xz" \
-    NODEJS_INSTALL_FILE="$NODEJS_PLATFORM.tar.xz"
-
-RUN mkdir -p "$NODEJS_BASEDIR" \
-    && wget -prefix "$NODEJS_BASEDIR" "$NODEJS_URL" \
-    && tar --directory "$NODEJS_BASEDIR" -xf "$NODEJS_BASEDIR/$NODEJS_INSTALL_FILE" \
-    && rm "$NODEJS_BASEDIR/$NODEJS_INSTALL_FILE"
-
-ENV NODEJS_HOME="/opt/nodejs/$NODEJS_PLATFORM"
