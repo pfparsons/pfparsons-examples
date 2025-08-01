@@ -2,8 +2,7 @@ FROM docker.io/fedora:latest
 
 COPY staging/* /
 
-RUN dnf update -y \
-    && dnf install -y python3-dnf-plugin-local createrepo_c
+RUN dnf update -y 
 
 ARG RPMS
 RUN read -ra RPM_LIST <<< $RPMS;dnf install -y ${RPM_LIST[*]} \

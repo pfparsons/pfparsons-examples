@@ -9,12 +9,19 @@
 function dnf::write_local_plugin_config() {
     local output_file_path="${1:?}"
     local local_repo_dir="${2:?}"
-
+    local cache_dir="${3:?}"
     cat <<EOF > "$output_file_path"
 [main]
 enabled = true
 # Path to the local repository.
-repodir = $dnf_local_plugin_repodir
+repodir = $cache_dir
+
+# Set to true if the packages are to be sorted into
+# architecture-specific directories.  This setting can be useful when
+# creating a local cache for multiple architectures, so they can
+# benefit from cached noarch packages.  Defaults to false to mimic the
+# behavior of the former local cache plugin.
+archdirs = true
 
 # Createrepo options. See man createrepo_c
 [createrepo]
@@ -26,11 +33,15 @@ enabled = true
 
 # If you want to speedup createrepo with the --cachedir option
 # https://linux.die.net/man/8/createrepo
-cachedir = $local_repo_dir
+cachedir = $cache_dir
 
 # quiet = true
 # verbose = false
 EOF
-
 }
 
+function dnf::debug_local_plugin_config() {
+    local config_file_path="${1:?}"
+    local conf=$(awk -F= '/^[[:space:]]*(#.*)?$/{next};/^[[:space:]]*\[/{prefix=gensub(/\[([^\]]*)\]/, "\\1_", 1, $0);next};{gsub(/[ \t]+$/, "", $1);gsub(/[ \t]+/, "", $2);print prefix $1 "=" $2}' "${config_file_path}")
+    echo "$conf"
+}
