@@ -1,0 +1,5 @@
+FROM docker.io/pfparsons/pfparsons-examples:fedora-base
+
+ARG RPM_LIST
+RUN --mount=type=bind,from=dnfcache,source=/var/cache/libdnf5,destination=/var/cache/libdnf5,rw \
+    dnf update -y && dnf install -y ${RPM_LIST[*]}

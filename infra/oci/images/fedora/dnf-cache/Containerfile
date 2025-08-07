@@ -2,8 +2,5 @@ FROM docker.io/fedora:latest
 
 COPY staging/* /
 
-RUN dnf update -y 
-
-ARG RPMS
-RUN read -ra RPM_LIST <<< $RPMS;dnf install -y ${RPM_LIST[*]} \
-    && dnf clean all
+ARG RPM_LIST
+RUN dnf update -y && dnf install -y --downloadonly ${RPM_LIST[*]}
