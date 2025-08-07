@@ -1,6 +1,6 @@
 FROM docker.io/fedora:latest
 
-COPY staging/* /
-
+COPY staging/ /
+RUN ls -al /etc/yum.repos.d
 ARG RPM_LIST
 RUN dnf update -y && dnf install -y --downloadonly ${RPM_LIST[*]}
