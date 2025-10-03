@@ -1,4 +1,5 @@
 #/bin/bash
-python -m venv venv
+python3.12 -m venv venv
 . venv/bin/activate
-python -m pip install -e .
+pip3.12 install uv
+python3.12 -m pip install -e examples/llm/playground

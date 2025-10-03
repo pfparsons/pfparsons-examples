@@ -1,18 +1,13 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
+        // "--device", "nvidia.com/gpu=all",
+        // "--cap-drop=NET_BIND_SERVICE",
+        // "--cap-drop=SETUID",
+        // "--security-opt=no-new-privileges"
+
 {
-    "name": "pfparsons-examples-devcontainer",
-	"build": {
-        "dockerfile": "Containerfile",
-        "context": ".",
-        "args": {
-            "--tag": "devcontainer"
-        }
-    },
+    "image": "docker.io/pfparsons/pfparsons-examples:fedora-devcontainer",	
     "runArgs": [
-        "--cap-drop=NET_BIND_SERVICE",
-        "--cap-drop=SETUID",
-        "--security-opt=no-new-privileges"
     ],
     "containerEnv": {
         "PYTHONDONTWRITEBYTECODE": "1"
@@ -24,6 +19,7 @@
     "customizations": {
         "vscode": {
             "settings": {
+                "telemetry.telemetryLevel": "off",
                 "remote.localPortHost": "localhost",
                 "editor.rulers": [79, 120],
                 "git.blame.editorDecoration.enabled": true,
@@ -33,6 +29,12 @@
                 "python.analysis.typeCheckingMode": "strict",
             },
             "extensions": [
+                "ms-vscode.cmake-tools",
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack",
+                "ms-vscode.cpptools-themes",
+                "nvidia.nsight-copilot",
+                "fstarlang.fstar-vscode-assistant",
                 "ms-azuretools.vscode-docker",
                 "ms-python.vscode-pylance",
                 "ms-python.python",

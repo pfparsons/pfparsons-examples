@@ -1,0 +1,17 @@
+FROM docker.io/fedora:latest
+
+COPY staging/ /
+RUN ls -al /etc/yum.repos.d
+
+RUN dnf upgrade --downloadonly -y
+# The RPM_LIST is quite long - allow for split into 8 x 8 packgages
+# TODO: explore using buildah to do this dynamically
+ARG dev_rpms
+RUN dnf install -y --downloadonly ${dev_rpms}
+
+ARG intel_rpms
+RUN dnf install -y --downloadonly ${intel_rpms}
+
+ARG nvidia_rpms
+RUN dnf install -y --downloadonly ${nvidia_rpms}
+

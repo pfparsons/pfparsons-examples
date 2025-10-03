@@ -4,4 +4,3 @@ ARG RPMS_1
 RUN --mount=type=bind,from=dnfcache,source=/var/cache/libdnf5,destination=/var/cache/libdnf5,rw \
     [[ "${#RPMS_1}" -gt "0" ]] && dnf update -y && dnf install -y ${RPMS_1}
 
-run wget https://github.com/duckdb/duckdb/releases/download/v1.3.2/libduckdb-linux-amd64.zip
