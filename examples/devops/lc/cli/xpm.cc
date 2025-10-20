@@ -6,7 +6,6 @@
 #include <libdnf5/base/goal.hpp>
 #include <libdnf5/rpm/package_query.hpp>
 #include <libdnf5/rpm/package.hpp>
-#include "cterror.h"
 
 struct DnfConfig {
     std::string yum_repo_dir = "/etc/yum.repos.d";

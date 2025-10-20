@@ -16,7 +16,8 @@ dependencies = [
     'duckdb',
     'pytest',
     'hypothesis',
-    'jupyterlab'
+    'jupyterlab',
+    'pendulum'
 ]
 
 [tool.pytest.ini_options]

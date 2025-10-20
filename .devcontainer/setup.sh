@@ -1,5 +1,6 @@
 #/bin/bash
-python3.12 -m venv venv
+python -m venv venv
 . venv/bin/activate
-pip3.12 install uv
-python3.12 -m pip install -e examples/llm/playground
+python -m pip install uv
+uv pip install pyarrow
+python -c "import pyarrow; pyarrow.create_library_symlinks()"

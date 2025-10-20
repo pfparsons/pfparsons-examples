@@ -1,0 +1,39 @@
+
+[build-system]
+requires = [
+    'cython > 3.1',
+    'numpy >= 1.25',
+    'pyarrow >= 12',
+    'setuptools >= 75'
+]
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'pfparsons-examples-encryption'
+version = '0.1.0'
+description = 'Various examples - mostly Python'
+authors = [{ name = 'Patrick Parsons' }]
+license-files = [ 'LICENSE' ]
+readme = 'README.md'
+dependencies = [
+    'pyarrow',
+    'pandas',
+    'duckdb',
+    'pytest',
+    'jupyterlab',
+    'pendulum',
+    'cryptography',
+]
+
+[project.optional-dependencies]
+dev = [
+    'cython'
+]
+
+[tool.pytest.ini_options]
+pythonpath = [ 'src' ]
+testpaths = [ 'src' ]
+
+[project.scripts]
+parquet_encrypt = "pfparsons.encryption_examples.parquet:main"
+extension_test = "pfparsons.encryption_examples.parquet:test_ext"

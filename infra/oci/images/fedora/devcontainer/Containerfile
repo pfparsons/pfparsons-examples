@@ -4,4 +4,11 @@ ARG RPMS_1
 RUN --mount=type=bind,from=dnfcache,source=/var/cache/libdnf5,destination=/var/cache/libdnf5,rw \
     [[ "${#RPMS_1}" -gt "0" ]] && dnf update -y && dnf install -y ${RPMS_1}
 
-run wget https://github.com/duckdb/duckdb/releases/download/v1.3.2/libduckdb-linux-amd64.zip
+#RUN wget https://github.com/duckdb/duckdb/releases/download/v1.3.2/libduckdb-linux-amd64.zip
+
+RUN mkdir /opt/bazelisk && \
+    wget https://github.com/bazelbuild/bazelisk/releases/download/v1.27.0/bazelisk-linux-amd64 -O /opt/bazelisk/bazelisk-linux-amd64 && \
+    chmod 775 bazelisk-linux-amd64 && \
+    ln -s /opt/bazelisk/bazelisk-linux-amd64 /opt/bazelisk/bazel && \
+    /opt/bazelisk/bazel && \
+    echo "export PATH=\$PATH:/opt/bazelisk" >> /etc/profile.d/bazelisk.sh

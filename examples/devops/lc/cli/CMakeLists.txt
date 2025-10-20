@@ -9,7 +9,7 @@ add_executable(xpm xpm.cpp)
 
 # libdnf5
 # -----------------------------------------------------------------------------
-find_package(PkgConfig REQUIRED)
+include(FindPkgConfig)
 pkg_check_modules(LIBDNF5 REQUIRED IMPORTED_TARGET libdnf5)
 
 if (LIBDNF5_FOUND)

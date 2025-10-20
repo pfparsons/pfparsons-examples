@@ -26,7 +26,8 @@
                 "git.blame.editorDecoration.template": "${authorName}, ${subject}  (${authorDateAgo})",
                 "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python",
                 // Also see https://github.com/microsoft/pyright/blob/main/docs/configuration.md#sample-pyprojecttoml-file
-                "python.analysis.typeCheckingMode": "strict",
+                "python.analysis.typeCheckingMode": "standard",
+                "notebook.lineNumbers": "on"
             },
             "extensions": [
                 "ms-vscode.cmake-tools",
@@ -45,7 +46,8 @@
                 "charliermarsh.ruff",
                 "tamasfe.even-better-toml",
                 "redhat.vscode-xml",
-                "shd101wyy.markdown-preview-enhanced"
+                "shd101wyy.markdown-preview-enhanced",
+                "ktnrg45.vscode-cython"
             ]
         }
     } 
