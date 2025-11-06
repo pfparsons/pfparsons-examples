@@ -1,14 +1,14 @@
 which
-ps
+procps-ng
 
-wget
+wget2
 curl
 
 zip
 unzip
 tar
 
-go
+golang
 
 gcc
 gcc-c++
@@ -26,7 +26,7 @@ gdb
 clang
 polly
 lld
-clang-devel
+#clang-devel
 clang-libs
 clang-tools-extra
 clang-tools-extra-devel
@@ -35,7 +35,7 @@ llvm
 lldb
 
 libdnf5-devel
-rpmbuild
+rpm-build
 rpmdevtools
 
 python3-devel

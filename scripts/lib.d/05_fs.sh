@@ -44,10 +44,6 @@ fs::read_file_lines() {
     done < "$file_path"
 }
 
-declare -a rpm_list
-fs::read_file_lines "/workspaces/pfparsons-examples/infra/oci/images/fedora/devcontainer/rpm-list.txt" rpm_list
-echo "size: ${#rpm_list[@]} : ${rpm_list[*]}"
-
 
 # TODO: keep or make into a function
 # 1. Check for a paths file at $PFP_CONFIG_DIR/paths or /opt/pfp/config/paths

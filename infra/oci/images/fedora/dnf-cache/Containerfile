@@ -7,18 +7,18 @@ RUN dnf upgrade --downloadonly -y
 # The RPM_LIST is quite long - allow for split into 8 x 8 packgages
 # TODO: explore using buildah to do this dynamically
 ARG RPMS_1=""
-RUN [[ "${#RPMS_1}" -gt "0" ]] && dnf install -y ${RPMS_1} || :
+RUN [[ "${#RPMS_1}" -gt "0" ]] && dnf install -y --downloadonly ${RPMS_1} || :
 ARG RPMS_2=""
-RUN [[ "${#RPMS_2}" -gt "0" ]] && dnf install -y ${RPMS_2} || :
+RUN [[ "${#RPMS_2}" -gt "0" ]] && dnf install -y --downloadonly ${RPMS_2} || :
 ARG RPMS_3=""
-RUN [[ "${#RPMS_3}" -gt "0" ]] && dnf install -y ${RPMS_3} || :
+RUN [[ "${#RPMS_3}" -gt "0" ]] && dnf install -y --downloadonly ${RPMS_3} || :
 ARG RPMS_4=""
-RUN [[ "${#RPMS_4}" -gt "0" ]] && dnf install -y ${RPMS_4} || :
+RUN [[ "${#RPMS_4}" -gt "0" ]] && dnf install -y --downloadonly ${RPMS_4} || :
 ARG RPMS_5=""
-RUN [[ "${#RPMS_5}" -gt "0" ]] && dnf install -y ${RPMS_5} || :
+RUN [[ "${#RPMS_5}" -gt "0" ]] && dnf install -y --downloadonly ${RPMS_5} || :
 ARG RPMS_6=""
-RUN [[ "${#RPMS_6}" -gt "0" ]] && dnf install -y ${RPMS_6} || :
+RUN [[ "${#RPMS_6}" -gt "0" ]] && dnf install -y --downloadonly ${RPMS_6} || :
 ARG RPMS_7=""
-RUN [[ "${#RPMS_7}" -gt "0" ]] && dnf install -y ${RPMS_7} || :
+RUN [[ "${#RPMS_7}" -gt "0" ]] && dnf install -y --downloadonly ${RPMS_7} || :
 ARG RPMS_8=""
-RUN [[ "${#RPMS_8}" -gt "0" ]] && dnf install -y ${RPMS_8} || :
+RUN [[ "${#RPMS_8}" -gt "0" ]] && dnf install -y --downloadonly ${RPMS_8} || :
